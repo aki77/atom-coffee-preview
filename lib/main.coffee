@@ -22,6 +22,8 @@ module.exports =
 
   toggle: (editor) ->
     return unless editor
+    project = editor.buffer.file?.getParent() ? atom.project.getDirectories()[0]
+    try process.chdir project?.path
 
     if @view?.isAlive()
       @view.destroy()
