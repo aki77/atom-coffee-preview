@@ -8,8 +8,6 @@ class PreviewView
 
   constructor: (@editor, @provider) ->
     @previewEditor = atom.workspace.buildTextEditor()
-    grammar = atom.grammars.grammarForScopeName(@provider.toScopeName)
-    @previewEditor.setGrammar(grammar) if grammar
     @previewEditor.getTitle = -> 'Source Preview'
     # suppress prompt
     @previewEditor.isModified = -> false
@@ -91,7 +89,10 @@ class PreviewView
     new Promise((resolve, reject) =>
       result = @provider.transform(@editor.getText(), options)
       resolve(result)
-    ).then(({code, sourceMap}) =>
+    ).then(({code, sourceMap, toScopeName}) =>
+      toScopeName ?= @provider.toScopeName
+      grammar = atom.grammars.grammarForScopeName(toScopeName)
+      @previewEditor.setGrammar(grammar) if grammar
       @previewEditor.setText(code)
       @sourceMap = new SourceMapConsumer(sourceMap) if sourceMap
       @debouncedSyncScroll()

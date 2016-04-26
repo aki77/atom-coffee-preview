@@ -32,6 +32,13 @@ describe "CoffeePreview", ->
         editorElement = atom.views.getView(editor)
       )
 
+    waitsForPromise ->
+      url = path.join(__dirname, 'fixtures', 'sample.cson')
+      atom.workspace.open(url).then((_editor) ->
+        editor = _editor
+        editorElement = atom.views.getView(editor)
+      )
+
   describe "when the atom-source-preview:toggle event is triggered", ->
     it "hides and shows the preview view", ->
       expect(atom.workspace.getTextEditors()).toHaveLength(1)
