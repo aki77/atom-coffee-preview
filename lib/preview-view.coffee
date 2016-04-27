@@ -55,7 +55,8 @@ class PreviewView
     @debouncedSyncScroll()
 
   changeItemHandler: (item) =>
-    @destroy() unless item in [@editor, @previewEditor]
+    unless atom.config.get 'source-preview.pinPreviewPane'
+      @destroy() unless item in [@editor, @previewEditor]
 
   syncScroll: =>
     return unless atom.config.get('source-preview.enableSyncScroll')
