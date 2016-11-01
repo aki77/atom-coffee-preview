@@ -1,20 +1,30 @@
-coffee = null
+coffee = CSON = null
 
 module.exports =
 class CoffeeProvider
   fromScopeName: 'source.coffee'
-  toScopeName: 'source.js'
+  indent: 2
 
   transform: (code, {sourceMap} = {}) ->
-    coffee ?= require 'coffee-script'
-    options =
-      sourceMap: sourceMap ? false
-      bare: atom.config.get('source-preview.coffeeProviderOptionBare')
+    if atom.workspace.getActiveTextEditor().getTitle().endsWith('.cson')
+      {parse} = CSON ?= require 'cson-parser'
 
-    result = coffee.compile(code, options)
-    result = {js: result} unless options.sourceMap
+      {
+        code: JSON.stringify(parse(code), null, @indent)
+        toScopeName: 'source.json'
+      }
+    else
+      coffee ?= require 'coffee-script'
 
-    {
-      code: result.js
-      sourceMap: result.v3SourceMap ? null
-    }
+      options =
+        sourceMap: sourceMap ? false
+        bare: atom.config.get('source-preview.coffeeProviderOptionBare')
+
+      result = coffee.compile(code, options)
+      result = {js: result} unless options.sourceMap
+
+      {
+        code: result.js
+        sourceMap: result.v3SourceMap ? null
+        toScopeName: 'source.js'
+      }
