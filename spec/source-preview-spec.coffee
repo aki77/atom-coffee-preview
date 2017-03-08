@@ -11,7 +11,8 @@ describe "CoffeePreview", ->
     spyOn(_._, 'now').andCallFake -> window.now
 
     atom.config.set('source-preview.enableSyncScroll', true)
-    atom.config.set('source-preview.enableBuiltinProvider', true)
+    atom.config.set('source-preview.builtinProviderTarget', 'ES6+')
+
     atom.config.set('source-preview.coffeeProviderOptionBare', false)
     atom.config.set('source-preview.RefreshDebouncePeriod', 200)
 

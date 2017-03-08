@@ -1,4 +1,4 @@
-hello = (name) ->
+hello = (name) =>
   console.log name
 
 hello('world')

@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "coffee-script": "^1.12.4",
+    "coffeescript": "next",
     "source-map": "^0.5.3",
     "underscore": "^1.8.3"
   },
@@ -30,10 +31,16 @@
     }
   },
   "configSchema": {
-    "enableBuiltinProvider": {
+    "builtinProviderTarget": {
       "order": 1,
-      "type": "boolean",
-      "default": true
+      "description": "Enable the builtin CoffeeScript compiler, and choose a compile target.",
+      "type": "string",
+      "default": "ES6+",
+      "enum": [
+        "ES3–5",
+        "ES6+",
+        "Disable"
+      ]
     },
     "enableSyncScroll": {
       "order": 2,
