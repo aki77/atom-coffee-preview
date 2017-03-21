@@ -9,26 +9,26 @@ class ProviderManager
   constructor: ->
     @subscriptions = new CompositeDisposable
     @providers = []
-    @subscriptions.add(atom.config.observe('source-preview.enableBuiltinProvider', @toggleBuiltinProvider))
+    @subscriptions.add(atom.config.observe('source-preview.builtinProviderTarget', @toggleBuiltinProvider))
 
   dispose: ->
     @subscriptions?.dispose()
     @subscriptions = null
     @providers = null
 
-  toggleBuiltinProvider: (enabled) =>
-    return unless enabled?
+  toggleBuiltinProvider: (target) =>
+    return unless target?
 
-    if enabled
-      return if @builtinProvider? or @builtinProviderRegistration?
-      CoffeeProvider ?= require('./coffee-provider')
-      @builtinProvider = new CoffeeProvider
-      @builtinProviderRegistration = @registerProvider(@builtinProvider)
-    else
+    if target is 'Disable'
       @builtinProviderRegistration?.dispose()
       @builtinProvider?.dispose?()
       @builtinProviderRegistration = null
       @builtinProvider = null
+    else
+      return if @builtinProvider? or @builtinProviderRegistration?
+      CoffeeProvider ?= require('./coffee-provider')
+      @builtinProvider = new CoffeeProvider
+      @builtinProviderRegistration = @registerProvider(@builtinProvider)
 
   providerForGrammar: ({name, scopeName}) ->
     for provider in @providers
