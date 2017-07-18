@@ -1,37 +1,48 @@
-# source-preview package
+[![badge][apm]][package]
+[![badge][chat]][#slack]
 
-Source Preview for Atom.
-[![Build Status](https://travis-ci.org/aki77/atom-source-preview.svg)](https://travis-ci.org/aki77/atom-source-preview)
+[Atom] Preview
+==============
+Preview your [_transpile_]d source code in [Atom].
 
-[![Gyazo](http://i.gyazo.com/e391eb2802466ffa86111577052d02b7.gif)](http://gyazo.com/e391eb2802466ffa86111577052d02b7)
+Features live preview pane, error notifications, and [optional] scroll sync with the cursor.
 
-## Features
+![demo](demo.gif)
 
-* Live updating of preview
-* Shows error messages
-* Synchronize cursor
+[Another] plugin for _[atom-transpile]_.
 
-## Supported Languages
+[Plugins][table]
+----------------
+_Preview_ relies on the same plugin system as the core _[atom-transpile]_ package (and is itself a plugin), so will work with [any others][another] you install.
 
-* CoffeeScript
-* Babel: [language\-babel](https://atom.io/packages/language-babel)
-* Pug(Jade): [source\-preview\-pug](https://atom.io/packages/source-preview-pug)
+See the [table] for a list of supported languages, or easily [create your own plugin][api] and add it to the list.
 
-## Commands
+[API]
+-----
+Creating a plugin is as simple as possible. See -
+the base example below, or the multiple existing packages for examples of how to implement your own.
 
-* `source-preview:toggle`
+Install
+-------
+`apm install transpile-preview` or search “preview” under Packages within Atom.
 
-## Settings
+License
+-------
+[MIT] © [Daniel Bayley] et [al]
 
-* `enableBuiltinProvider` (default: true)
+[MIT]:              LICENSE.md#the-mit-license-mit
+[Daniel Bayley]:    https://github.com/danielbayley
+[al]:               https://github.com/danielbayley/atom-transpile-preview/graphs/contributors
 
-## Keymap
+[atom]:             https://atom.io
+[apm]:              https://img.shields.io/apm/v/transpile-preview.svg?style=flat-square
+[package]:          https://atom.io/packages/transpile-preview
+[chat]:             https://img.shields.io/badge/chat-atom.io%20slack-ff69b4.svg?style=flat-square
+[#slack]:           https://atom-slack.herokuapp.com
 
-No keymap by default.
+[_transpile_]:      https://en.wikipedia.org/wiki/Source-to-source_compiler
+[atom-transpile]:   https://atom.io/packages/transpile
+[another]:          https://atom.io/packages/search?q=transpile-
 
-edit `~/.atom/keymap.cson`
-
-```coffeescript
-'atom-text-editor[data-grammar~="source"]':
-  'ctrl-M': 'source-preview:toggle'
-```
+[table]:            https://github.com/danielbayley/atom-transpile#plugins
+[API]:              https://github.com/danielbayley/atom-transpile#api

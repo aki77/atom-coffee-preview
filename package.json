@@ -1,55 +1,54 @@
 {
-  "name": "source-preview",
-  "main": "./lib/main",
-  "version": "0.5.2",
-  "description": "Source Preview for Atom",
+  "name": "transpile-preview",
+  "version": "0.1.0",
+  "description": "Quickly preview your transpiled source code in Atom.",
   "keywords": [
-    "coffeescript",
+    "transpile",
+    "convert",
+    "refactor",
+    "source",
     "preview"
   ],
-  "activationCommands": {
-    "atom-text-editor[data-grammar~='source']": [
-      "source-preview:toggle"
-    ]
-  },
-  "repository": "https://github.com/aki77/atom-source-preview",
+  "homepage": "https://atom.io/packages/transpile",
+  "repository": "danielbayley/atom-transpile",
+  "bugs": "https://github.com/danielbayley/atom-transpile/issues",
+  "author": "Daniel Bayley <daniel.bayley@me.com> (https://github.com/danielbayley)",
+  "contributors": [
+    "aki77 (https://github.com/aki77)"
+  ],
+  "private": true,
   "license": "MIT",
-  "engines": {
-    "atom": ">=1.4.0 <2.0.0"
-  },
   "dependencies": {
-    "coffee-script": "^1.12.6",
+    "loophole": "^1.1.0",
     "source-map": "^0.5.3",
     "underscore": "^1.8.3"
   },
-  "consumedServices": {
-    "preview.provider": {
+  "scripts": {
+    "preinstall": "apm install transpile"
+  },
+  "engines": {
+    "atom": ">=1.4.0 <2.0.0"
+  },
+  "providedServices": {
+    "transpile_preview": {
       "versions": {
-        "0.1.0": "consumeProvider"
+        "1.0.0": "activate"
       }
     }
   },
   "configSchema": {
-    "enableBuiltinProvider": {
-      "order": 1,
+    "scrollSync": {
       "type": "boolean",
       "default": true
     },
-    "enableSyncScroll": {
-      "order": 2,
-      "type": "boolean",
-      "default": true
-    },
-    "RefreshDebouncePeriod": {
-      "order": 3,
-      "type": "integer",
-      "default": 200
-    },
-    "coffeeProviderOptionBare": {
-      "order": 4,
-      "description": "Avoid wrapping function in compiled module source (just like coffee -c --bare [source])",
+    "pinPreviewPane": {
+      "description": "Leave preview pane open when switching tabs.",
       "type": "boolean",
       "default": false
     }
+  },
+  "projectmanager": {
+    "title": "transpile_preview",
+    "template": "atom-package"
   }
 }
