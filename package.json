@@ -40,13 +40,19 @@
       "type": "boolean",
       "default": true
     },
-    "RefreshDebouncePeriod": {
+    "pinPreviewPane": {
       "order": 3,
+      "description": "Leave preview pane open when switching tabs.",
+      "type": "boolean",
+      "default": false
+    },
+    "RefreshDebouncePeriod": {
+      "order": 4,
       "type": "integer",
       "default": 200
     },
     "coffeeProviderOptionBare": {
-      "order": 4,
+      "order": 5,
       "description": "Avoid wrapping function in compiled module source (just like coffee -c --bare [source])",
       "type": "boolean",
       "default": false
